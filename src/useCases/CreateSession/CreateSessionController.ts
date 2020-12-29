@@ -7,14 +7,12 @@ export default class CreateUserController {
   ) {}
 
   async handle(req: Request , res: Response) : Promise<Response> {
-    const {registration, cellphone, cpf, password, choice } = req.body;
+    const {identify, password, choice } = req.body;
 
     try{
       const session = await this.createSessionUseCase.execute({
         password,
-        registration,
-        cpf,
-        cellphone,
+        identify,
         choice
       })
 

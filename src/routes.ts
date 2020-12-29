@@ -10,7 +10,7 @@ router.post('/session', (req, res) => {
   return createSessionController.handle(req, res);
 })
 
-router.use(ensureAuthenticated);
+// router.use(ensureAuthenticated);
 
 router.post('/users', (req, res) => {
   return createUserController.handle(req, res);

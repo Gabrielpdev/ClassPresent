@@ -16,13 +16,11 @@ export default class CreteUserUseCase {
   async execute(data: ICreateSessionRequestDTO) {
     switch (data.choice){
       case "registration": {
-        const user = await this.usersRepository.findByRegistration(data.registration);
+        const user = await this.usersRepository.findByRegistration(data.identify);
 
         if(!user){
           throw new Error ("This registration does not exists")
         }
-
-        console.log(await this.hashProvider.compare(user.password, data.password))
 
         if (!await this.hashProvider.compare(data.password, user.password)){
           throw new Error ("Password does not match")
@@ -36,13 +34,13 @@ export default class CreteUserUseCase {
       }
 
       case "cpf": {
-        const user = await this.usersRepository.findByCpf(data.cpf);
+        const user = await this.usersRepository.findByCpf(data.identify);
 
         if(!user){
           throw new Error ("This cpf does not exists")
         }
 
-        if (!await this.hashProvider.compare(user.password, data.password)){
+        if (!await this.hashProvider.compare(data.password, user.password)){
           throw new Error ("Password does not match")
         }
 
@@ -54,13 +52,13 @@ export default class CreteUserUseCase {
       }
 
       case "cellphone": {
-        const user = await this.usersRepository.findByCellphone(data.cellphone);
+        const user = await this.usersRepository.findByCellphone(data.identify);
     
         if(!user){
           throw new Error ("This cellphone does not exists")
         }
 
-        if (!await this.hashProvider.compare(user.password, data.password)){
+        if (!await this.hashProvider.compare(data.password, user.password)){
           throw new Error ("Password does not match")
         }
 
@@ -68,7 +66,7 @@ export default class CreteUserUseCase {
           expiresIn: authConfig.jwt.expiresIn,
         });
 
-        return { user , token }
+        return { user , token } 
       }
 
       default : {
