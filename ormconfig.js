@@ -1,10 +1,13 @@
 module.exports = {
   url: process.env.DATABASE_URL,
-    type: 'postgres',
-    entities: [process.env.TYPEORM_ENTITIES],
-    synchronize: true,
-    extra: {
-      ssl: true,
+  type: 'postgres',
+  entities: [process.env.TYPEORM_ENTITIES],
+  synchronize: true,
+  ssl: true,
+  extra: {
+    ssl: {
+      rejectUnauthorized: false,
+    },
   },
   // type: "postgres",
   // host: process.env.DB_HOST,
