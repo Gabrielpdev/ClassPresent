@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { createUserController } from "./useCases/CreateUser";
 import { createSessionController } from "./useCases/CreateSession";
-import ensureAuthenticated from './middlewares/ensureAuthentication'; 
+// import ensureAuthenticated from './middlewares/ensureAuthentication'; 
 
 const router = Router();
 

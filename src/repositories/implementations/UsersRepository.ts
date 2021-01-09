@@ -47,8 +47,8 @@ class UsersRepository implements IUserRepository {
     this.ormRepository = getRepository(User);
 
     const user = this.ormRepository.create({
-    id: uuid(),
-      ...userData
+      id: uuid(),
+      ...userData,
     });
 
     await this.ormRepository.save(user);
