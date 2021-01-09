@@ -3,7 +3,7 @@ module.exports = {
   type: 'postgres',
   entities: [process.env.TYPEORM_ENTITIES],
   synchronize: true,
-  ssl: true,
+  // ssl: true,
   extra: {
     ssl: {
       rejectUnauthorized: false,
