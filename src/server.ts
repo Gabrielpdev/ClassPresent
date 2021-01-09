@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(router);
 
 app.listen((process.env.APP_PORT || 8080), () => {
-  console.log("Server started 🚀")
+  console.log(`Server started on port ${app.get('port')} 🚀`)
 });
 
 // app.set('port', (process.env.APP_PORT || 5000));
